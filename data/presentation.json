@@ -1,10 +1,12 @@
 {
   "beam": "W21×147",
-  "lg": "56 in",
+  "Lg": "56 in",
+  "lrfd_dc": "0.9979",
+  "asd_dc": "0.9969",
   "upper_gusset": "PL 1/2",
   "lower_gusset": "PL 3/4",
-  "upper_whitmore": "18.9 in",
-  "lower_whitmore": "19.9 in",
-  "dc_lrfd": "0.9979",
-  "dc_asd": "0.9969"
+  "upper_reinforcement": "2PL1×1",
+  "lower_reinforcement": "2PL1.25×1.25",
+  "geometry_status": "PARTIALLY_DIMENSIONED",
+  "drawing_warning": "Full fabrication-ready gusset contour coordinates are not source-defined. No unsourced dimensions are inferred."
 }
