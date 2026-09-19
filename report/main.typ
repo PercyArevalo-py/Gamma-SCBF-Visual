@@ -8,7 +8,7 @@
 #let green = rgb("e9f5ec")
 #let border = rgb("c9ced3")
 #let label(s) = text(size: 7pt, weight: "bold", fill: rgb("666666"), upper(s))
-#let metric(k, v) = block(width: 100%, inset: 7pt, radius: 2pt, stroke: border, fill: gray)[#label(k) #v(2pt) #text(size: 11pt, weight: "bold")[#v]]
+#let metric(k, val) = block(width: 100%, inset: 7pt, radius: 2pt, stroke: border, fill: gray)[#label(k) #v(2pt) #text(size: 11pt, weight: "bold")[#val]]
 #let pill(s, fill: green) = box(inset: (x: 6pt, y: 3pt), radius: 10pt, fill: fill, stroke: border)[#text(size: 7pt, weight: "bold")[#s]]
 
 #block(width: 100%, inset: (x: 10pt, y: 9pt), fill: navy)[
