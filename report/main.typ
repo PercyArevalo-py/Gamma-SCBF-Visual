@@ -36,7 +36,7 @@
 #line(length: 100%, stroke: (paint: navy, thickness: 1.2pt))
 #v(3pt)
 #table(columns: (2.2fr,.75fr,.9fr,.75fr), inset: 5pt, stroke: border,
- table.header(fill: gray, [*Limit state*], [*Method*], [*Demand / Capacity*], [*Status*]),
+ table.header([*Limit state*], [*Method*], [*Demand / Capacity*], [*Status*]),
  [Local beam Chevron shear], [LRFD], [#p.dc_lrfd], [#pill("PASS")],
  [Local beam Chevron shear], [ASD], [#p.dc_asd], [#pill("PASS")],
  [Beam web local yielding], [LRFD], [766 / 2310 kip], [#pill("PASS")],
