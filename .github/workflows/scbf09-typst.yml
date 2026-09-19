@@ -25,7 +25,7 @@ jobs:
       - name: Compile SCBF09
         run: |
           mkdir -p qa
-          typst compile report/main.typ qa/SCBF09_GOLDEN_CANDIDATE.pdf
+          typst compile --root . report/main.typ qa/SCBF09_GOLDEN_CANDIDATE.pdf
           sha256sum qa/SCBF09_GOLDEN_CANDIDATE.pdf | tee qa/SCBF09_GOLDEN_CANDIDATE.sha256
       - name: Upload Golden candidate
         uses: actions/upload-artifact@v4
