@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="620" viewBox="0 0 1000 620">
+<rect x="60" y="285" width="880" height="50" fill="none" stroke="black" stroke-width="4"/>
+<text x="75" y="275" font-family="sans-serif" font-size="22">W21×147 — d = 22.1 in</text>
+<polygon points="350,285 500,120 650,285" fill="none" stroke="black" stroke-width="4"/>
+<polygon points="350,335 500,500 650,335" fill="none" stroke="black" stroke-width="4"/>
+<line x1="500" y1="120" x2="760" y2="30" stroke="black" stroke-width="22"/>
+<line x1="500" y1="500" x2="760" y2="590" stroke="black" stroke-width="22"/>
+<text x="365" y="175" font-family="sans-serif" font-size="19">Upper gusset PL 1/2</text>
+<text x="365" y="475" font-family="sans-serif" font-size="19">Lower gusset PL 3/4</text>
+<text x="70" y="390" font-family="sans-serif" font-size="18">Lg = 56 in · NTS</text>
+<text x="70" y="420" font-family="sans-serif" font-size="18">Whitmore: 18.9 / 19.9 in</text>
+<text x="70" y="450" font-family="sans-serif" font-size="18">Overlap: 16 / 28 in</text>
+<text x="70" y="480" font-family="sans-serif" font-size="18">Reinf.: 2PL1×1 / 2PL1.25×1.25</text>
+<text x="70" y="530" font-family="sans-serif" font-size="18">DRAWING_DATA_MISSING — schematic / NTS</text>
+</svg>
