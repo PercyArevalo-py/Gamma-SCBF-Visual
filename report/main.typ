@@ -6,10 +6,10 @@
 #let gray = rgb("f2f4f6")
 #let amber = rgb("fff3cd")
 #let green = rgb("e9f5ec")
-#let line = rgb("c9ced3")
+#let border = rgb("c9ced3")
 #let label(s) = text(size: 7pt, weight: "bold", fill: rgb("666666"), upper(s))
-#let metric(k, val) = block(width: 100%, inset: 7pt, radius: 2pt, stroke: line, fill: gray)[#label(k) #v(2pt) #text(size: 11pt, weight: "bold")[#val]]
-#let pill(s) = box(inset: (x: 6pt, y: 3pt), radius: 10pt, fill: green, stroke: line)[#text(size: 7pt, weight: "bold")[#s]]
+#let metric(k, val) = block(width: 100%, inset: 7pt, radius: 2pt, stroke: border, fill: gray)[#label(k) #v(2pt) #text(size: 11pt, weight: "bold")[#val]]
+#let pill(s) = box(inset: (x: 6pt, y: 3pt), radius: 10pt, fill: green, stroke: border)[#text(size: 7pt, weight: "bold")[#s]]
 
 #block(width: 100%, inset: (x: 10pt, y: 9pt), fill: navy)[
 #text(fill: white, size: 18pt, weight: "bold")[SCBF09 - SHARED GUSSET CONNECTION] \
@@ -20,8 +20,8 @@
  metric("Beam", p.beam), metric("Shared interface Lg", p.lg), metric("LRFD governing D/C", p.dc_lrfd), metric("ASD governing D/C", p.dc_asd))
 #v(6pt)
 #grid(columns: (1fr, 1fr), gutter: 5pt,
- block(inset: 7pt, stroke: line)[#label("Upper connection") \ *Gusset:* #p.upper_gusset  |  *Whitmore:* #p.upper_whitmore],
- block(inset: 7pt, stroke: line)[#label("Lower connection") \ *Gusset:* #p.lower_gusset  |  *Whitmore:* #p.lower_whitmore])
+ block(inset: 7pt, stroke: border)[#label("Upper connection") \ *Gusset:* #p.upper_gusset  |  *Whitmore:* #p.upper_whitmore],
+ block(inset: 7pt, stroke: border)[#label("Lower connection") \ *Gusset:* #p.lower_gusset  |  *Whitmore:* #p.lower_whitmore])
 #v(7pt)
 #grid(columns: (1fr, auto), align: horizon, [#text(size: 11pt, weight:"bold", fill: navy)[CONNECTION GEOMETRY]], [#pill("PASS - ENGINEERING")])
 #line(length: 100%, stroke: (paint: navy, thickness: 1.2pt))
@@ -35,7 +35,7 @@
 #text(size: 11pt, weight:"bold", fill: navy)[GOVERNING DESIGN CHECKS]
 #line(length: 100%, stroke: (paint: navy, thickness: 1.2pt))
 #v(3pt)
-#table(columns: (2.2fr,.75fr,.9fr,.75fr), inset: 5pt, stroke: line,
+#table(columns: (2.2fr,.75fr,.9fr,.75fr), inset: 5pt, stroke: border,
  table.header(fill: gray, [*Limit state*], [*Method*], [*Demand / Capacity*], [*Status*]),
  [Local beam Chevron shear], [LRFD], [#p.dc_lrfd], [#pill("PASS")],
  [Local beam Chevron shear], [ASD], [#p.dc_asd], [#pill("PASS")],
