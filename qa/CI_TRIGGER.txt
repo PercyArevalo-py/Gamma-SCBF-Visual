@@ -1,0 +1,3 @@
+SCBF09 Golden Visual CI trigger
+Typst pinned: 0.15.1
+Purpose: force a push event after the workflow exists on main.
