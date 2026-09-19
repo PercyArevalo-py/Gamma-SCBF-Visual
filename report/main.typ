@@ -1,4 +1,3 @@
-#let data = json("../data/report.json")
 #let view = json("../data/presentation.json")
 #set page(paper: "a4", margin: (x: 15mm, y: 13mm), header: context [#text(size: 7.5pt, fill: rgb("666666"))[GAMMA ARQUITECTURA E INGENIERIA  /  SCBF DESIGN REPORT]], footer: context [#text(size: 7.5pt, fill: rgb("666666"))[SCBF09  |  Engineering calculation package  |  Page #counter(page).display()]])
 #set text(font: "Liberation Sans", size: 8.5pt, fill: rgb("202020"))
