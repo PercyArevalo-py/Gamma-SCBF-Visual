@@ -44,7 +44,7 @@
  [Lower HSS reinforced effective net area], [LRFD], [9.55 / 10.3 in²], [#pill("PASS")])
 #v(7pt)
 #grid(columns:(1fr,1fr), gutter:7pt,
- block(inset:7pt, stroke:line)[#label("Design basis") \ AISC 341-22; AISC 360-22; AISC Seismic Design Manual, 4th Ed. Example 5.3.8.],
- block(inset:7pt, stroke:line)[#label("Audit state") \ 32/32 engineering rules PASS. Geometry: PARTIALLY_DIMENSIONED. Production release: *NO*.])
+ block(inset:7pt, stroke:border)[#label("Design basis") \ AISC 341-22; AISC 360-22; AISC Seismic Design Manual, 4th Ed. Example 5.3.8.],
+ block(inset:7pt, stroke:border)[#label("Audit state") \ 32/32 engineering rules PASS. Geometry: PARTIALLY_DIMENSIONED. Production release: *NO*.])
 #v(6pt)
 #text(size: 7.5pt, fill: rgb("666666"))[Numerical authority: immutable EngineeringReportData. Typst performs presentation only; no structural capacities or engineering geometry are recalculated in this document.]
