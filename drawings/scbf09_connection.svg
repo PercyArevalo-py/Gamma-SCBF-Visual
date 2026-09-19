@@ -1,15 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="620" viewBox="0 0 1000 620">
-<rect x="60" y="285" width="880" height="50" fill="none" stroke="black" stroke-width="4"/>
-<text x="75" y="275" font-family="sans-serif" font-size="22">W21×147 — d = 22.1 in</text>
-<polygon points="350,285 500,120 650,285" fill="none" stroke="black" stroke-width="4"/>
-<polygon points="350,335 500,500 650,335" fill="none" stroke="black" stroke-width="4"/>
-<line x1="500" y1="120" x2="760" y2="30" stroke="black" stroke-width="22"/>
-<line x1="500" y1="500" x2="760" y2="590" stroke="black" stroke-width="22"/>
-<text x="365" y="175" font-family="sans-serif" font-size="19">Upper gusset PL 1/2</text>
-<text x="365" y="475" font-family="sans-serif" font-size="19">Lower gusset PL 3/4</text>
-<text x="70" y="390" font-family="sans-serif" font-size="18">Lg = 56 in · NTS</text>
-<text x="70" y="420" font-family="sans-serif" font-size="18">Whitmore: 18.9 / 19.9 in</text>
-<text x="70" y="450" font-family="sans-serif" font-size="18">Overlap: 16 / 28 in</text>
-<text x="70" y="480" font-family="sans-serif" font-size="18">Reinf.: 2PL1×1 / 2PL1.25×1.25</text>
-<text x="70" y="530" font-family="sans-serif" font-size="18">DRAWING_DATA_MISSING — schematic / NTS</text>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="820" viewBox="0 0 1400 820">
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M8,4 L0,0 L0,8 z" fill="#333"/></marker><style>.outline{stroke:#111;stroke-width:3;fill:#fff}.member{stroke:#111;stroke-width:24;fill:none;stroke-linecap:square}.plate{stroke:#111;stroke-width:3;fill:#f1f1f1}.center{stroke:#777;stroke-width:1.5;stroke-dasharray:10 7;fill:none}.whitmore{stroke:#555;stroke-width:2;stroke-dasharray:8 6;fill:none}.dim{stroke:#333;stroke-width:1.5;fill:none;marker-start:url(#arrow);marker-end:url(#arrow)}.ext{stroke:#777;stroke-width:1}.txt{font:22px Arial,sans-serif;fill:#111}.small{font:18px Arial,sans-serif;fill:#222}.dimtxt{font:19px Arial,sans-serif;fill:#111}.tag{font:bold 18px Arial,sans-serif;fill:#111}.warn{font:bold 17px Arial,sans-serif;fill:#111}</style></defs>
+<rect x="160" y="355" width="1080" height="100" class="outline"/><line x1="160" y1="405" x2="1240" y2="405" class="center"/><text x="1010" y="390" class="tag">BEAM W21x147</text><text x="1010" y="423" class="small">d = 22.1 in</text>
+<polygon points="455,355 565,155 715,155 825,355" class="plate"/><polygon points="455,455 565,685 715,685 825,455" class="plate"/>
+<line x1="265" y1="85" x2="600" y2="355" class="member"/><line x1="1015" y1="750" x2="675" y2="455" class="member"/><line x1="265" y1="85" x2="600" y2="355" class="center"/><line x1="1015" y1="750" x2="675" y2="455" class="center"/>
+<text x="165" y="85" class="tag">UPPER BRACE</text><text x="930" y="785" class="tag">LOWER BRACE</text>
+<line x1="500" y1="280" x2="675" y2="165" class="whitmore"/><line x1="500" y1="535" x2="690" y2="675" class="whitmore"/><text x="745" y="180" class="small">Whitmore width = 18.9 in</text><text x="745" y="655" class="small">Whitmore width = 19.9 in</text>
+<line x1="455" y1="325" x2="455" y2="290" class="ext"/><line x1="825" y1="325" x2="825" y2="290" class="ext"/><line x1="455" y1="300" x2="825" y2="300" class="dim"/><text x="588" y="282" class="dimtxt">Lg = 56 in</text>
+<line x1="430" y1="155" x2="395" y2="155" class="ext"/><line x1="430" y1="355" x2="395" y2="355" class="ext"/><line x1="405" y1="155" x2="405" y2="355" class="dim"/><text x="375" y="265" transform="rotate(-90 375 265)" class="dimtxt">Upper gusset height = 25 in</text>
+<line x1="430" y1="455" x2="395" y2="455" class="ext"/><line x1="540" y1="685" x2="395" y2="685" class="ext"/><line x1="405" y1="455" x2="405" y2="685" class="dim"/><text x="375" y="590" transform="rotate(-90 375 590)" class="dimtxt">Lower gusset height = 34 in</text>
+<text x="530" y="210" class="tag">UPPER GUSSET: PL 1/2</text><text x="530" y="610" class="tag">LOWER GUSSET: PL 3/4</text><text x="875" y="245" class="small">HSS overlap = 16 in</text><text x="875" y="275" class="small">Reinforcement = 2PL1x1</text><text x="875" y="545" class="small">HSS overlap = 28 in</text><text x="875" y="575" class="small">Reinforcement = 2PL1.25x1.25</text>
+<rect x="1050" y="70" width="220" height="60" class="outline"/><text x="1090" y="108" class="warn">SCHEMATIC / NTS</text></svg>
