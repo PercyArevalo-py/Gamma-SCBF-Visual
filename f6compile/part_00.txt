@@ -1,0 +1,215 @@
+Option Strict On
+Option Explicit On
+Option Infer On
+Imports System
+Imports System.Collections.Generic
+Imports System.Globalization
+Imports System.Linq
+Imports System.Xml.Linq
+Imports System.Text
+Imports Gamma.StructuralDrawing
+
+Namespace Gamma.StructuralDrawing
+
+Public Enum GeometryOrigin
+ ExactSource
+ DerivedFromSource
+ Schematic
+ Missing
+End Enum
+
+Public Enum DrawingLayer
+ Background = 0
+ MinorGrid = 10
+ MajorGrid = 20
+ Construction = 30
+ Plate = 40
+ Steel = 50
+ Brace = 60
+ Reinforcement = 70
+ Slot = 80
+ Weld = 90
+ Axis = 100
+ Whitmore = 110
+ Dimension = 120
+ WeldSymbol = 130
+ Leader = 140
+ Label = 150
+ WorkPoint = 160
+End Enum
+
+Public Enum DrawingKind
+ Polyline
+ Polygon
+ Text
+ Circle
+End Enum
+
+Public Structure Point2D
+ Public ReadOnly X As Double
+ Public ReadOnly Y As Double
+ Public Sub New(x0 As Double,y0 As Double)
+  X=x0 : Y=y0
+ End Sub
+End Structure
+
+Public Structure Vector2D
+ Public ReadOnly X As Double
+ Public ReadOnly Y As Double
+ Public Sub New(x0 As Double,y0 As Double)
+  X=x0 : Y=y0
+ End Sub
+ Public ReadOnly Property Length As Double
+  Get
+   Return Math.Sqrt(X*X+Y*Y)
+  End Get
+ End Property
+ Public Function Normalize() As Vector2D
+  Dim l=Length
+  If l<=1.0E-12 Then Throw New ArgumentException("Vector nulo.")
+  Return New Vector2D(X/l,Y/l)
+ End Function
+ Public Function Perpendicular() As Vector2D
+  Return New Vector2D(-Y,X)
+ End Function
+ Public Function Scale(k As Double) As Vector2D
+  Return New Vector2D(X*k,Y*k)
+ End Function
+ Public Function Dot(other As Vector2D) As Double
+  Return X*other.X+Y*other.Y
+ End Function
+ Public Function Cross(other As Vector2D) As Double
+  Return X*other.Y-Y*other.X
+ End Function
+ Public Function Rotate(angleDeg As Double) As Vector2D
+  Dim a=angleDeg*Math.PI/180.0,c=Math.Cos(a),sn=Math.Sin(a)
+  Return New Vector2D(c*X-sn*Y,sn*X+c*Y)
+ End Function
+End Structure
+
+Public NotInheritable Class LocalCoordinateSystem2D
+ Public ReadOnly Origin As Point2D
+ Public ReadOnly U As Vector2D
+ Public ReadOnly V As Vector2D
+ Public Sub New(origin0 As Point2D,axisU As Vector2D)
+  Origin=origin0
+  U=axisU.Normalize()
+  V=U.Perpendicular()
+ End Sub
+ Public Function ToGlobal(u0 As Double,v0 As Double) As Point2D
+  Return New Point2D(Origin.X+u0*U.X+v0*V.X,Origin.Y+u0*U.Y+v0*V.Y)
+ End Function
+ Public Function ToLocal(p As Point2D) As Point2D
+  Dim d As New Vector2D(p.X-Origin.X,p.Y-Origin.Y)
+  Return New Point2D(d.Dot(U),d.Dot(V))
+ End Function
+End Class
+
+Public Structure Bounds2D
+ Public MinX As Double
+ Public MinY As Double
+ Public MaxX As Double
+ Public MaxY As Double
+ Public Sub New(x0 As Double,y0 As Double,x1 As Double,y1 As Double)
+  MinX=x0 : MinY=y0 : MaxX=x1 : MaxY=y1
+ End Sub
+ Public ReadOnly Property Width As Double
+  Get
+   Return MaxX-MinX
+  End Get
+ End Property
+ Public ReadOnly Property Height As Double
+  Get
+   Return MaxY-MinY
+  End Get
+ End Property
+ Public Sub Include(p As Point2D)
+  MinX=Math.Min(MinX,p.X) : MaxX=Math.Max(MaxX,p.X)
+  MinY=Math.Min(MinY,p.Y) : MaxY=Math.Max(MaxY,p.Y)
+ End Sub
+End Structure
+
+Public NotInheritable Class DrawingEntity
+ Public Property Id As String = ""
+ Public Property Kind As DrawingKind
+ Public Property Layer As DrawingLayer
+ Public Property Points As New List(Of Point2D)
+ Public Property Text As String = ""
+ Public Property RotationDeg As Double
+ Public Property Radius As Double
+ Public Property Origin As GeometryOrigin = GeometryOrigin.DerivedFromSource
+ Public Property Evidence As String = "Fig. 5-29, Example 5.3.8"
+ Public Property FontScale As Double = 1.0
+End Class
+
+Public NotInheritable Class EngineeringDrawingModel
+ Public Property DrawingId As String = "SCBF09-F6"
+ Public Property Title As String = "SCBF09 - Chevron shared gusset connection"
+ Public Property Units As String = "in"
+ Public Property Items As New List(Of DrawingEntity)
+ Public Property Notes As New List(Of String)
+ Public Property FabricationReady As Boolean
+
+ Public Sub Path(id As String,layer As DrawingLayer,closed As Boolean,origin As GeometryOrigin,evidence As String,ParamArray p() As Point2D)
+  Items.Add(New DrawingEntity With {.Id=id,.Layer=layer,.Kind=If(closed,DrawingKind.Polygon,DrawingKind.Polyline),.Points=p.ToList(),.Origin=origin,.Evidence=evidence})
+ End Sub
+ Public Sub Label(id As String,text0 As String,p As Point2D,Optional rotation As Double=0,Optional origin0 As GeometryOrigin=GeometryOrigin.DerivedFromSource,Optional evidence0 As String="Fig. 5-29",Optional fontScale0 As Double=1.0)
+  Items.Add(New DrawingEntity With {.Id=id,.Layer=DrawingLayer.Label,.Kind=DrawingKind.Text,.Text=text0,.Points=New List(Of Point2D) From {p},.RotationDeg=rotation,.Origin=origin0,.Evidence=evidence0,.FontScale=fontScale0})
+ End Sub
+ Public Sub Circle(id As String,layer As DrawingLayer,center As Point2D,radius0 As Double,origin0 As GeometryOrigin,evidence0 As String)
+  Items.Add(New DrawingEntity With {.Id=id,.Layer=layer,.Kind=DrawingKind.Circle,.Points=New List(Of Point2D) From {center},.Radius=radius0,.Origin=origin0,.Evidence=evidence0})
+ End Sub
+End Class
+
+Public NotInheritable Class StructuralDrawingStyle
+ Public Property Background As String = "#ffffff"
+ Public Property MinorGrid As String = "#edf1f3"
+ Public Property MajorGrid As String = "#d6dde1"
+ Public Property Axis As String = "#8b979d"
+ Public Property StructuralStroke As String = "#263238"
+ Public Property PlateFill As String = "#f3f6f7"
+ Public Property BraceFill As String = "#ffffff"
+ Public Property ReinforcementFill As String = "#c7d3d8"
+ Public Property DimensionStroke As String = "#4c5b62"
+ Public Property ConstructionStroke As String = "#94a1a7"
+ Public Property Text As String = "#1f2b30"
+ Public Shared Function GammaEngineeringWhite() As StructuralDrawingStyle
+  Return New StructuralDrawingStyle()
+ End Function
+End Class
+
+Public Module DrawingUtilities
+ Public Function F(n As Double) As String
+  Return n.ToString("0.###",CultureInfo.InvariantCulture)
+ End Function
+ Public Function Bounds(model As EngineeringDrawingModel) As Bounds2D
+  Dim allPts=model.Items.SelectMany(Function(e) e.Points).ToList()
+  If allPts.Count=0 Then Return New Bounds2D(-10,-10,10,10)
+  Dim b As New Bounds2D(allPts(0).X,allPts(0).Y,allPts(0).X,allPts(0).Y)
+  For Each p In allPts.Skip(1) : b.Include(p) : Next
+  ' Text has no geometric width in the model. Estimate conservatively for auto-fit only.
+  For Each e In model.Items.Where(Function(x) x.Kind=DrawingKind.Text AndAlso x.Points.Count>0)
+   Dim p=e.Points(0),w=Math.Max(3.0,e.Text.Length*1.15*e.FontScale),h=3.0*e.FontScale
+   b.Include(New Point2D(p.X+w,p.Y+h))
+   b.Include(New Point2D(p.X-1,p.Y-h))
+  Next
+  Return b
+ End Function
+ Public Function NiceStep(span As Double) As Double
+  If span<=0 Then Return 10
+  Dim raw=span/10.0
+  Dim pow=Math.Pow(10,Math.Floor(Math.Log10(raw)))
+  Dim f=raw/pow
+  Dim nice As Double
+  If f<=1 Then
+   nice=1
+  ElseIf f<=2 Then
+   nice=2
+  ElseIf f<=5 Then
+   nice=5
+  Else
+   nice=10
+  End If
+  Return nice*pow
+ End Function
+ Public Function PolygonArea(points As IList(Of Point2D)) As Double
